@@ -1,3 +1,5 @@
+# Cleans school.csv file
+
 import pandas as pd
 import os
 
