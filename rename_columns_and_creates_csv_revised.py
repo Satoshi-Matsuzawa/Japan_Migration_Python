@@ -50,4 +50,4 @@ new_file_names = ['school', 'student_employed',
 
 for i in range(len(new_file_names)):
     file_out = os.path.join(directory, new_file_names[i]+'.csv')
-    df[i].to_csv(file_out)
+    df[i].to_csv(file_out, index=False)
