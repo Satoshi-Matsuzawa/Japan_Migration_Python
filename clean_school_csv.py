@@ -1,4 +1,6 @@
 # Cleans school.csv file
+# Replace 99 or 999 with 0
+# Except for two rows, this causes no problem
 
 import pandas as pd
 import os
