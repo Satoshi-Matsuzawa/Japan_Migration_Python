@@ -20,10 +20,10 @@ df = df[df.male_graduates != null_major]
 
 # Replace null values with 0
 gender = ['male', 'female']
+major_or_minor = ['_major', '_minor']
 categories_major = ['_high_school', '_employed']
 categories_minor = ['_part_time_high_school', '_home_and_high_school',
                     '_home', '_others']
-major_or_minor = ['_major', '_minor']
 
 for item_g in gender:
     for item_m in major_or_minor:
