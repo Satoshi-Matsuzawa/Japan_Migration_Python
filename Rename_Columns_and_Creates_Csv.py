@@ -8,7 +8,7 @@ original_file_names = ['0001_kou', '0001_otsu', '0001_hei', '0001_tei']
 df = []
 
 for file_name in original_file_names:
-    original_file = os.path.join(directory, file_name+'.dat')
+    original_file = os.path.join(directory, file_name + '.dat')
     df.append(pd.read_csv(original_file, sep='\t', error_bad_lines=False))
 
 # Column Names
@@ -29,10 +29,10 @@ courses = ['course_1', 'course_2', 'course_3',
            'course_4', 'course_5', 'course_6']
 guardian = ['heir', 'relation_to_the_guardian', 'occupation_of_the_guardian']
 family = [' living_standard', 'family_size']
-job = ['job_industry', 'job_location', 'job_firm_size',
-       'job_description', 'job_trainee_or_apprentice',
-       'job_starting_salary', 'job_commute_or_live_alone',
-       'job_employment_channel', 'attend_school']
+job = ['industry', 'location', 'firm_size',
+       'job_description', 'trainee_or_apprentice',
+       'starting_salary', 'commute_or_live_alone',
+       'employment_channel', 'attend_school']
 home = ['reasons_not_employed', 'career_plan', 'attending_school']
 high_school = ['academic_scores', 'specialization', 'career_plan']
 
@@ -53,5 +53,5 @@ new_file_names = ['school', 'student_employed',
                   'student_home', 'student_high_school']
 
 for i in range(len(new_file_names)):
-    file_out = os.path.join(directory, new_file_names[i]+'.csv')
+    file_out = os.path.join(directory, new_file_names[i] + '.csv')
     df[i].to_csv(file_out, index=False)

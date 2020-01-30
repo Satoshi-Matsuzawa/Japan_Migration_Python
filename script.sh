@@ -1,2 +1,2 @@
-python3 rename_columns_and_creates_csv_revised.py
-python3 clean_school_csv.py
+python3 Rename_Columns_and_Creates_Csv.py
+python3 Clean_School_Csv.py
