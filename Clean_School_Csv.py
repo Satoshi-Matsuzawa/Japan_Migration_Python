@@ -66,10 +66,18 @@ def create_total(df, category):
     df['total' + category] = df['male' + category] + df['female' + category]
 
 
-categories = ['_graduates'] + categories
-for c in categories:
+columns = ['_graduates'] + categories
+for c in columns:
     create_total(df, c)
 
+
+def create_total_share(df, category):
+    df['total'+category + '_share'] = df['total' +
+                                         category] / df['total_graduates']
+
+
+for c in categories:
+    create_total_share(df, c)
 
 # Create cleaned dataset
 new_file_name = 'school_cleaned.csv'
