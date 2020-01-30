@@ -27,11 +27,17 @@ categories_minor = ['_part_time_high_school', '_home_and_high_school',
                     '_home', '_others']
 categories = categories_major + categories_minor
 
-for g in gender:
-    for m in major_or_minor:
-        for c in vars()['categories' + m]:
-            column = g + c
-            df.loc[:, column][df.loc[:, column] == vars()['null' + m]] = 0
+
+def replace_with_zero(df, gender, category, null):
+    column = gender + category
+    df.loc[:, column][df.loc[:, column] == null] = 0
+
+
+for gen in gender:
+    for cat_min in categories_minor:
+        replace_with_zero(df, gen, cat_min, null_minor)
+    for cat_maj in categories_major:
+        replace_with_zero(df, gen, cat_maj, null_major)
 
 # Compare subtotal of categories and graduates
 # categories_all = categories_major + categories_minor
@@ -55,9 +61,9 @@ def create_share(df, gender, category):
                                           category] / df[gender + '_graduates']
 
 
-for g in gender:
-    for c in categories:
-        create_share(df, g, c)
+for gen in gender:
+    for cat in categories:
+        create_share(df, gen, cat)
 
 # Create Totals
 
@@ -67,17 +73,17 @@ def create_total(df, category):
 
 
 columns = ['_graduates'] + categories
-for c in columns:
-    create_total(df, c)
+for col in columns:
+    create_total(df, col)
 
 
 def create_total_share(df, category):
-    df['total'+category + '_share'] = df['total' +
-                                         category] / df['total_graduates']
+    df['total' + category + '_share'] = df['total' +
+                                           category] / df['total_graduates']
 
 
-for c in categories:
-    create_total_share(df, c)
+for cat in categories:
+    create_total_share(df, cat)
 
 # Create cleaned dataset
 new_file_name = 'school_cleaned.csv'
