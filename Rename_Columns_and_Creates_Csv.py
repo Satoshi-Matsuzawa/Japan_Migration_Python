@@ -1,4 +1,6 @@
-# Load dats file, rename columns, and create csv files
+# Load dat file
+# Rename columns
+# Create csv files
 
 import pandas as pd
 import os

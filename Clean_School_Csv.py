@@ -1,6 +1,5 @@
-# Cleans school.csv file
-# Replace 99 or 999 with 0
-# Except for two rows, this causes no problem
+# Clean school.csv file
+# Replace null values, 99 or 999, with 0
 # Add shares and totals
 
 import pandas as pd
@@ -27,6 +26,9 @@ categories_minor = ['_part_time_high_school', '_home_and_high_school',
                     '_home', '_others']
 categories = categories_major + categories_minor
 
+# Major categories use null value 999
+# Minor categories use null value 99
+
 
 def replace_with_zero(df, gender, category, null):
     column = gender + category
@@ -34,10 +36,9 @@ def replace_with_zero(df, gender, category, null):
 
 
 for gen in gender:
-    for cat_min in categories_minor:
-        replace_with_zero(df, gen, cat_min, null_minor)
-    for cat_maj in categories_major:
-        replace_with_zero(df, gen, cat_maj, null_major)
+    for m in major_or_minor:
+        for cat in vars()['categories' + m]:
+            replace_with_zero(df, gen, cat, vars()['null' + m])
 
 # Compare subtotal of categories and graduates
 # categories_all = categories_major + categories_minor
