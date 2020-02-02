@@ -56,7 +56,7 @@ for cat in categories:
     func.create_total_share(df_merged, cat, 'employed')
 
 # Plot Graphs
-directory_graph = '../../Graphs/Students_Employed'
+directory_graph = '../../Graphs/Students_Summary'
 func.plot_dist(df_merged, 'total_channel_agg_school_share',
                'the share of students who used school', 'school_share',
                directory_graph)

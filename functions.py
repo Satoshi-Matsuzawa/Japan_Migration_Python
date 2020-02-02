@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import matplotlib
 import seaborn as sns
 import os
 
@@ -27,32 +28,44 @@ def create_total_share(df, category, denominator):
 
 
 # Fuctions for seaborn graphs.
-plt.rcParams['figure.figsize'] = [10, 5]
+plt.figure(figsize=(5.8, 3.0))
 
 
 def plot_dist(data, column, title_name, output_name, directory_graph, bins=20):
     sns_plot = sns.distplot(data[column].dropna(), bins=bins)
     sns_fig = sns_plot.get_figure()
     plt.title('Distribution of ' + title_name)
-    file_name = output_name + '_dist.png'
-    file_out = os.path.join(directory_graph, file_name)
-    sns_fig.savefig(file_out)
+    file_name_pgf = output_name + '_dist.pgf'
+    file_out_pgf = os.path.join(directory_graph, file_name_pgf)
+    sns_fig.savefig(file_out_pgf)
     plt.show()
+#    file_name_pdf = output_name + '_dist.pdf'
+#    file_out_pdf = os.path.join(directory_graph, file_name_pdf)
+#    sns_fig.savefig(file_out_pdf)
+#    plt.show()
 
 
 def plot_count(data, column, category, title_name, output_name, directory_graph):
     sns_plot = sns.catplot(x=column, kind='count', hue=category, data=data)
     plt.title('Counts of ' + title_name)
-    file_name = output_name + '_count.png'
-    file_out = os.path.join(directory_graph, file_name)
-    sns_plot.savefig(file_out)
+    file_name_pgf = output_name + '_count.pgf'
+    file_out_pgf = os.path.join(directory_graph, file_name_pgf)
+    sns_plot.savefig(file_out_pgf)
     plt.show()
+#    file_name_pdf = output_name + '_count.pdf'
+#    file_out_pdf = os.path.join(directory_graph, file_name_pdf)
+#    sns_plot.savefig(file_out_pdf)
+#    plt.show()
 
 
 def plot_joint(data, column1, column2, title_name, output_name, directory_graph):
     sns_plot = sns.jointplot(x=column1, y=column2, data=data)
     plt.title('Joint plot of ' + title_name)
-    file_name = output_name + '_joint.png'
-    file_out = os.path.join(directory_graph, file_name)
-    sns_plot.savefig(file_out)
+    file_name_pgf = output_name + '_joint.pgf'
+    file_out_pgf = os.path.join(directory_graph, file_name_pgf)
+    sns_plot.savefig(file_out_pgf)
     plt.show()
+#    file_name_pdf = output_name + '_joint.pdf'
+#    file_out_pdf = os.path.join(directory_graph, file_name_pdf)
+#    sns_plot.savefig(file_out_pdf)
+#    plt.show()
