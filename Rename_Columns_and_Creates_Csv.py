@@ -33,7 +33,7 @@ guardian = ['heir', 'relation_to_the_guardian', 'occupation_of_the_guardian']
 family = [' living_standard', 'family_size']
 job = ['industry', 'location', 'firm_size',
        'job_description', 'trainee_or_apprentice',
-       'starting_salary', 'commute_or_live_alone',
+       'salary', 'commute_or_live_alone',
        'employment_channel', 'attend_school']
 home = ['reasons_not_employed', 'career_plan', 'attending_school']
 high_school = ['academic_scores', 'specialization', 'career_plan']
