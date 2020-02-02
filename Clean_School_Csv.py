@@ -4,6 +4,7 @@
 
 import pandas as pd
 import os
+import functions as func
 
 directory = '../../Data/School/0001'
 file_name = 'school.csv'
@@ -20,25 +21,19 @@ df = df[df.male_graduates != null_major]
 
 # Replace null values with 0
 gender = ['male', 'female']
-major_or_minor = ['_major', '_minor']
-categories_major = ['_high_school', '_employed']
-categories_minor = ['_part_time_high_school', '_home_and_high_school',
-                    '_home', '_others']
+major_or_minor = ['major', 'minor']
+categories_major = ['high_school', 'employed']
+categories_minor = ['part_time_high_school', 'home_and_high_school',
+                    'home', 'others']
 categories = categories_major + categories_minor
 
 # Major categories use null value 999
 # Minor categories use null value 99
 
-
-def replace_with_zero(df, gender, category, null):
-    column = gender + category
-    df.loc[:, column][df.loc[:, column] == null] = 0
-
-
 for gen in gender:
     for m in major_or_minor:
-        for cat in vars()['categories' + m]:
-            replace_with_zero(df, gen, cat, vars()['null' + m])
+        for cat in vars()['categories' + '_' + m]:
+            func.replace_with_zero(df, gen, cat, vars()['null' + '_' + m])
 
 # Compare subtotal of categories and graduates
 # categories_all = categories_major + categories_minor
@@ -55,36 +50,18 @@ for gen in gender:
 
 
 # Create Shares
-
-
-def create_share(df, gender, category):
-    df[gender + category + '_share'] = df[gender +
-                                          category] / df[gender + '_graduates']
-
-
 for gen in gender:
     for cat in categories:
-        create_share(df, gen, cat)
+        func.create_share(df, gen, cat, 'graduates')
 
 # Create Totals
-
-
-def create_total(df, category):
-    df['total' + category] = df['male' + category] + df['female' + category]
-
-
-columns = ['_graduates'] + categories
+columns = ['graduates'] + categories
 for col in columns:
-    create_total(df, col)
+    func.create_total(df, col)
 
-
-def create_total_share(df, category):
-    df['total' + category + '_share'] = df['total' +
-                                           category] / df['total_graduates']
-
-
+# Create total shares
 for cat in categories:
-    create_total_share(df, cat)
+    func.create_total_share(df, cat, 'graduates')
 
 # Create cleaned dataset
 new_file_name = 'school_cleaned.csv'
