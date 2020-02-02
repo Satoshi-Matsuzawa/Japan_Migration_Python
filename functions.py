@@ -28,10 +28,10 @@ def create_total_share(df, category, denominator):
 
 
 # Fuctions for seaborn graphs.
-plt.figure(figsize=(5.8, 3.0))
 
 
 def plot_dist(data, column, title_name, output_name, directory_graph, bins=20):
+    plt.figure(figsize=(3.8, 2.0))
     sns_plot = sns.distplot(data[column].dropna(), bins=bins)
     sns_fig = sns_plot.get_figure()
     plt.title('Distribution of ' + title_name)
@@ -46,7 +46,8 @@ def plot_dist(data, column, title_name, output_name, directory_graph, bins=20):
 
 
 def plot_count(data, column, category, title_name, output_name, directory_graph):
-    sns_plot = sns.catplot(x=column, kind='count', hue=category, data=data)
+    plt.figure(figsize=(3.8, 2.0))
+    sns_plot = sns.catplot(y=column, kind='count', hue=category, data=data)
     plt.title('Counts of ' + title_name)
     file_name_pgf = output_name + '_count.pgf'
     file_out_pgf = os.path.join(directory_graph, file_name_pgf)
@@ -59,6 +60,7 @@ def plot_count(data, column, category, title_name, output_name, directory_graph)
 
 
 def plot_joint(data, column1, column2, title_name, output_name, directory_graph):
+    plt.figure(figsize=(3.8, 2.0))
     sns_plot = sns.jointplot(x=column1, y=column2, data=data)
     plt.title('Joint plot of ' + title_name)
     file_name_pgf = output_name + '_joint.pgf'
