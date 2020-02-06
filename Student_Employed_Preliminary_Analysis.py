@@ -10,7 +10,7 @@ df = pd.read_csv(file_read)
 
 # Aggregate Employmnet Channels
 dict_channel = {1: 'school', 2: 'school', 3: 'school',
-                4: 'connections', 5: 'connections', 6: 'connections',
+                4: 'connection', 5: 'connection', 6: 'connection',
                 7: 'ad', 8: 'high_school', 9: 'firm', 99: 'no_response'}
 df['channel_agg'] = df.employment_channel
 df.channel_agg = df.channel_agg.map(dict_channel)
@@ -30,8 +30,8 @@ func.plot_dist(df[df.channel_agg == 'school'], 'salary',
                'salary, school', 'salary_school',
                directory_graph)
 
-func.plot_dist(df[df.channel_agg == 'connections'], 'salary',
-               'salary, connections', 'salary_connections',
+func.plot_dist(df[df.channel_agg == 'connection'], 'salary',
+               'salary, connection', 'salary_connection',
                directory_graph)
 
 
@@ -44,17 +44,17 @@ func.plot_dist(df[df.channel_agg == 'connections'], 'salary',
 #          'firm_size', 'firm size whose channel is school',
 #          'firm_size_school')
 
-# plot_dist(df[(df.firm_size != 9999) & (df.channel_agg == 'connections')],
-#          'firm_size', 'firm size whose channel is connections',
-#          'firm_size_connections')
+# plot_dist(df[(df.firm_size != 9999) & (df.channel_agg == 'connection')],
+#          'firm_size', 'firm size whose channel is connection',
+#          'firm_size_connection')
 
 # Show jobs through school are more likely to be manufacturing.
-data = df[(df.channel_agg == 'school') | (df.channel_agg == 'connections')]
+data = df[(df.channel_agg == 'school') | (df.channel_agg == 'connection')]
 func.plot_count(data, 'industry', 'channel_agg',
                 'the industry for each channels', 'industry', directory_graph)
 
 # Show jobs through school are more likely to be in urban districts.
-data = df[(df.channel_agg == 'school') | (df.channel_agg == 'connections')]
+data = df[(df.channel_agg == 'school') | (df.channel_agg == 'connection')]
 func.plot_count(data, 'location', 'channel_agg',
                 'the location for each channels', 'location', directory_graph)
 #
@@ -68,27 +68,27 @@ func.plot_dist(df_mean_salary, 'school',
                'the mean salary, school', 'mean_salary_school',
                directory_graph)
 
-func.plot_dist(df_mean_salary, 'connections',
-               'the mean salary, connections',
-               'mean_salary_connections', directory_graph)
+func.plot_dist(df_mean_salary, 'connection',
+               'the mean salary, connection',
+               'mean_salary_connection', directory_graph)
 
 # Plot firm size for each category at the school level.
 func.plot_dist(df_mean_firm_size, 'school',
                'the mean firm size, school',
                'mean_firm_size_school', directory_graph)
 
-func.plot_dist(df_mean_firm_size, 'connections',
-               'the mean firm size, connections',
-               'mean_firm_size_connections', directory_graph)
+func.plot_dist(df_mean_firm_size, 'connection',
+               'the mean firm size, connection',
+               'mean_firm_size_connection', directory_graph)
 
-# Compare the mean of salary whose channel is school vs. connections.
+# Compare the mean of salary whose channel is school vs. connection.
 df_mean_salary['salary_gap'] = df_mean_salary.school - \
-    df_mean_salary.connections
-func.plot_dist(df_mean_salary, 'salary_gap', 'salary gap',
+    df_mean_salary.connection
+func.plot_dist(df_mean_salary, 'salary_gap', 'the salary gap',
                'salary_gap', directory_graph, bins=30)
 # Compare the mean of firm size.
 df_mean_firm_size['firm_size_gap'] = df_mean_firm_size.school - \
-    df_mean_firm_size.connections
+    df_mean_firm_size.connection
 func.plot_dist(df_mean_firm_size, 'firm_size_gap',
                'firm size gap', 'firm_size_gap',
                directory_graph, bins=30)
