@@ -59,6 +59,15 @@ def plot_count(data, column, category, title_name, output_name, directory_graph)
 #    plt.show()
 
 
+def plot_count_png(data, column, category, title_name, output_name, directory_graph):
+    sns_plot = sns.catplot(y=column, kind='count', hue=category, data=data)
+    plt.title('Counts of ' + title_name)
+    file_name_png = output_name + '_count.png'
+    file_out_png = os.path.join(directory_graph, file_name_png)
+    sns_plot.savefig(file_out_png)
+    plt.show()
+
+
 def plot_joint(data, column1, column2, title_name, output_name, directory_graph):
     plt.figure(figsize=(3.8, 2.0))
     sns_plot = sns.jointplot(x=column1, y=column2, data=data)
